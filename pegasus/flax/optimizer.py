@@ -259,7 +259,7 @@ def pegasus_scale_by_factored_rms(
       return UpdateResult(update, new_v_row, new_v_col, new_v)
 
     # Transform grad and compute new per-parameter stats.
-    output = jax.tree_multimap(lambda *args: _update(*args, state.count), grads,
+    output = jax.tree_map(lambda *args: _update(*args, state.count), grads,
                                state.v_row, state.v_col, state.v, params)
 
     # Unpack updates / stats and return.
